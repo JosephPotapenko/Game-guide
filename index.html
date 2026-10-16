@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#12100e">
+  <meta name="description" content="An online reader for The Collectables Side Quest game guide.">
+  <title>The Collectables Side Quest | Game Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="The Collectables Side Quest home">
+        <span class="brand-mark" aria-hidden="true">✦</span>
+        <span>FIELD NOTES <b>/</b> 01</span>
+      </a>
+      <div class="topbar-actions">
+        <span class="status-dot"><i></i> Online reader</span>
+        <a class="text-link" href="The%20Collectables%20Side%20Quest.pdf" target="_blank" rel="noopener">Open original <span aria-hidden="true">↗</span></a>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="intro" aria-labelledby="page-title">
+        <div class="eyebrow"><span></span> COLLECTOR'S EDITION · VISUAL GUIDE</div>
+        <h1 id="page-title">The Collectables<br><em>Side Quest</em></h1>
+        <div class="intro-bottom">
+          <p class="dek">....</p>
+          <div class="guide-meta" aria-label="Guide details">
+            <div><small>FORMAT</small><strong>Digital field guide</strong></div>
+            <div><small>ACCESS</small><strong>Read in browser</strong></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="reader-section" aria-labelledby="reader-heading">
+        <div class="section-heading">
+          <div>
+            <span class="section-kicker">THE ARCHIVE</span>
+            <h2 id="reader-heading">Browse the guide</h2>
+          </div>
+          <button class="fullscreen-button" type="button" id="fullscreenButton" title="Expand reader">
+            <span class="expand-icon" aria-hidden="true">⛶</span> Expand reader
+          </button>
+        </div>
+
+        <div class="reader-frame" id="readerFrame">
+          <div class="reader-toolbar">
+            <span class="toolbar-label"><span class="live-dot"></span> READING VIEW</span>
+            <span class="toolbar-note">Scroll inside the guide to turn the pages</span>
+          </div>
+          <div class="pdf-wrap">
+            <object data="The%20Collectables%20Side%20Quest.pdf" type="application/pdf" aria-label="The Collectables Side Quest PDF guide">
+              <div class="fallback">
+                <span class="fallback-icon">◫</span>
+                <h3>Your browser cannot display this guide inline.</h3>
+                <p>Open the original document in a new tab to read it.</p>
+                <a class="button" href="The%20Collectables%20Side%20Quest.pdf" target="_blank" rel="noopener">Open guide <span aria-hidden="true">↗</span></a>
+              </div>
+            </object>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>THE COLLECTABLES SIDE QUEST</span>
+      <span>Made to be explored, page by page.</span>
+    </footer>
+  </div>
+  <script>
+    const reader = document.getElementById('readerFrame');
+    const fullscreenButton = document.getElementById('fullscreenButton');
+
+    fullscreenButton.addEventListener('click', async () => {
+      if (!document.fullscreenElement) {
+        await reader.requestFullscreen?.();
+      } else {
+        await document.exitFullscreen?.();
+      }
+    });
+
+    document.addEventListener('fullscreenchange', () => {
+      const expanded = document.fullscreenElement === reader;
+      fullscreenButton.innerHTML = expanded
+        ? '<span class="expand-icon" aria-hidden="true">⤢</span> Exit reader'
+        : '<span class="expand-icon" aria-hidden="true">⛶</span> Expand reader';
+    });
+  </script>
+</body>
+</html>
